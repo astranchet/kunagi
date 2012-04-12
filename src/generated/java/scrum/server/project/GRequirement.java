@@ -48,6 +48,7 @@ public abstract class GRequirement
         properties.put("rejectDate", this.rejectDate == null ? null : this.rejectDate.toString());
         properties.put("closed", this.closed);
         properties.put("dirty", this.dirty);
+        properties.put("businessPoints", this.businessPoints);
         properties.put("workEstimationVotingActive", this.workEstimationVotingActive);
         properties.put("workEstimationVotingShowoff", this.workEstimationVotingShowoff);
         properties.put("tasksOrderIds", this.tasksOrderIds);
@@ -612,6 +613,41 @@ public abstract class GRequirement
     }
 
     // -----------------------------------------------------------
+    // - businessPoints
+    // -----------------------------------------------------------
+
+    private java.lang.Integer businessPoints;
+
+    public final java.lang.Integer getBusinessPoints() {
+        return businessPoints;
+    }
+
+    public final void setBusinessPoints(java.lang.Integer businessPoints) {
+        businessPoints = prepareBusinessPoints(businessPoints);
+        if (isBusinessPoints(businessPoints)) return;
+        this.businessPoints = businessPoints;
+        updateLastModified();
+        fireModified("businessPoints="+businessPoints);
+    }
+
+    protected java.lang.Integer prepareBusinessPoints(java.lang.Integer businessPoints) {
+        return businessPoints;
+    }
+
+    public final boolean isBusinessPointsSet() {
+        return this.businessPoints != null;
+    }
+
+    public final boolean isBusinessPoints(java.lang.Integer businessPoints) {
+        if (this.businessPoints == null && businessPoints == null) return true;
+        return this.businessPoints != null && this.businessPoints.equals(businessPoints);
+    }
+
+    protected final void updateBusinessPoints(Object value) {
+        setBusinessPoints((java.lang.Integer)value);
+    }
+
+    // -----------------------------------------------------------
     // - workEstimationVotingActive
     // -----------------------------------------------------------
 
@@ -926,6 +962,7 @@ public abstract class GRequirement
             if (property.equals("rejectDate")) updateRejectDate(value);
             if (property.equals("closed")) updateClosed(value);
             if (property.equals("dirty")) updateDirty(value);
+            if (property.equals("businessPoints")) updateBusinessPoints(value);
             if (property.equals("workEstimationVotingActive")) updateWorkEstimationVotingActive(value);
             if (property.equals("workEstimationVotingShowoff")) updateWorkEstimationVotingShowoff(value);
             if (property.equals("tasksOrderIds")) updateTasksOrderIds(value);

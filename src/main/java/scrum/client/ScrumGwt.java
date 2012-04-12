@@ -51,6 +51,11 @@ public class ScrumGwt extends Gwt {
 		return project.isProductOwner(user);
 	}
 
+	public static String getBusinessPointAsString(Integer estimation, String suffix) {
+		String s = getEstimationAsString(new Float(estimation));
+		return s == null ? null : s + " " + suffix;
+	}
+
 	public static String getEstimationAsString(Float estimation, String suffix) {
 		String s = getEstimationAsString(estimation);
 		return s == null ? null : s + " " + suffix;

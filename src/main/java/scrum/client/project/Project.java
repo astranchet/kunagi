@@ -66,6 +66,8 @@ public class Project extends GProject implements ForumSupport {
 	private static transient final Log LOG = Log.get(Project.class);
 
 	private static final String effortUnit = "pts";
+	private static final String businessPointUnit = "points fonctionnels";
+
 	public static final String INIT_LABEL = "New Project";
 
 	public transient boolean historyLoaded;
@@ -328,6 +330,10 @@ public class Project extends GProject implements ForumSupport {
 
 	public String getEffortUnit() {
 		return effortUnit;
+	}
+
+	public String getBusinessPointUnit() {
+		return businessPointUnit;
 	}
 
 	public Wikipage createNewWikipage(String name) {

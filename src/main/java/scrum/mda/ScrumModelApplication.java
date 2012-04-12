@@ -400,6 +400,9 @@ public class ScrumModelApplication extends AGeneratorApplication {
 			requirementModel.addProperty("rejectDate", Date.class);
 			requirementModel.addProperty("closed", boolean.class);
 			requirementModel.addProperty("dirty", boolean.class);
+
+			requirementModel.addIntegerProperty("businessPoints");
+
 			requirementModel.addProperty("workEstimationVotingActive", boolean.class);
 			requirementModel.addProperty("workEstimationVotingShowoff", boolean.class);
 			requirementModel.addListProperty("tasksOrderIds", String.class);

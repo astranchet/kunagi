@@ -64,6 +64,8 @@ public abstract class GRequirementDao
         rejectDatesCache = null;
         requirementsByClosedCache.clear();
         requirementsByDirtyCache.clear();
+        requirementsByBusinessPointsCache.clear();
+        businessPointssCache = null;
         requirementsByWorkEstimationVotingActiveCache.clear();
         requirementsByWorkEstimationVotingShowoffCache.clear();
         requirementsByTasksOrderIdCache.clear();
@@ -544,6 +546,46 @@ public abstract class GRequirementDao
 
         public boolean test(Requirement e) {
             return value == e.isDirty();
+        }
+
+    }
+
+    // -----------------------------------------------------------
+    // - businessPoints
+    // -----------------------------------------------------------
+
+    private final Cache<java.lang.Integer,Set<Requirement>> requirementsByBusinessPointsCache = new Cache<java.lang.Integer,Set<Requirement>>(
+            new Cache.Factory<java.lang.Integer,Set<Requirement>>() {
+                public Set<Requirement> create(java.lang.Integer businessPoints) {
+                    return getEntities(new IsBusinessPoints(businessPoints));
+                }
+            });
+
+    public final Set<Requirement> getRequirementsByBusinessPoints(java.lang.Integer businessPoints) {
+        return new HashSet<Requirement>(requirementsByBusinessPointsCache.get(businessPoints));
+    }
+    private Set<java.lang.Integer> businessPointssCache;
+
+    public final Set<java.lang.Integer> getBusinessPointss() {
+        if (businessPointssCache == null) {
+            businessPointssCache = new HashSet<java.lang.Integer>();
+            for (Requirement e : getEntities()) {
+                if (e.isBusinessPointsSet()) businessPointssCache.add(e.getBusinessPoints());
+            }
+        }
+        return businessPointssCache;
+    }
+
+    private static class IsBusinessPoints implements Predicate<Requirement> {
+
+        private java.lang.Integer value;
+
+        public IsBusinessPoints(java.lang.Integer value) {
+            this.value = value;
+        }
+
+        public boolean test(Requirement e) {
+            return e.isBusinessPoints(value);
         }
 
     }

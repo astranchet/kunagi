@@ -189,6 +189,9 @@ public class ScreenCssBuilder implements CssBuilder {
 		css.style(".RequirementEstimatedWorkWidget").marginLeft(3);
 		css.style(".RequirementEstimatedWorkWidget .gwt-Button").fontSize(fontSizeSmall);
 
+		// css.style("#Requirement_businessPoints").color("white").background("darkgrey").fontSize(fontSizeSmall)
+		// .fontWeightNormal().padding(0, 4);
+
 		css.style(".EstimationBarWidget").marginTop(8).border(1, cNavigatorSelectedItemBackground);
 		css.style(".EstimationBarWidget-bar0").background(cEstimationBar0).lineHeight(1).fontSize(1);
 		css.style(".EstimationBarWidget-bar1").background(cEstimationBar1).lineHeight(1).fontSize(1);

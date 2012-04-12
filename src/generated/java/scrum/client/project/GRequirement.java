@@ -614,6 +614,69 @@ public abstract class GRequirement
 
     }
 
+    // --- businessPoints ---
+
+    private java.lang.Integer businessPoints ;
+
+    public final java.lang.Integer getBusinessPoints() {
+        return this.businessPoints ;
+    }
+
+    public final Requirement setBusinessPoints(java.lang.Integer businessPoints) {
+        if (isBusinessPoints(businessPoints)) return (Requirement)this;
+        this.businessPoints = businessPoints ;
+        propertyChanged("businessPoints", this.businessPoints);
+        return (Requirement)this;
+    }
+
+    public final boolean isBusinessPoints(java.lang.Integer businessPoints) {
+        return equals(this.businessPoints, businessPoints);
+    }
+
+    private transient BusinessPointsModel businessPointsModel;
+
+    public BusinessPointsModel getBusinessPointsModel() {
+        if (businessPointsModel == null) businessPointsModel = createBusinessPointsModel();
+        return businessPointsModel;
+    }
+
+    protected BusinessPointsModel createBusinessPointsModel() { return new BusinessPointsModel(); }
+
+    protected class BusinessPointsModel extends ilarkesto.gwt.client.editor.AIntegerEditorModel {
+
+        @Override
+        public String getId() {
+            return "Requirement_businessPoints";
+        }
+
+        @Override
+        public java.lang.Integer getValue() {
+            return getBusinessPoints();
+        }
+
+        @Override
+        public void setValue(java.lang.Integer value) {
+            setBusinessPoints(value);
+        }
+
+            @Override
+            public void increment() {
+                setBusinessPoints(getBusinessPoints() + 1);
+            }
+
+            @Override
+            public void decrement() {
+                setBusinessPoints(getBusinessPoints() - 1);
+            }
+
+        @Override
+        protected void onChangeValue(java.lang.Integer oldValue, java.lang.Integer newValue) {
+            super.onChangeValue(oldValue, newValue);
+            addUndo(this, oldValue);
+        }
+
+    }
+
     // --- workEstimationVotingActive ---
 
     private boolean workEstimationVotingActive ;
@@ -801,6 +864,7 @@ public abstract class GRequirement
         rejectDate  =  rejectDateAsString == null ? null : new ilarkesto.core.time.Date(rejectDateAsString);
         closed  = (Boolean) props.get("closed");
         dirty  = (Boolean) props.get("dirty");
+        businessPoints  = (java.lang.Integer) props.get("businessPoints");
         workEstimationVotingActive  = (Boolean) props.get("workEstimationVotingActive");
         workEstimationVotingShowoff  = (Boolean) props.get("workEstimationVotingShowoff");
         tasksOrderIds  = (java.util.List<java.lang.String>) props.get("tasksOrderIds");
@@ -824,6 +888,7 @@ public abstract class GRequirement
         properties.put("rejectDate", this.rejectDate == null ? null : this.rejectDate.toString());
         properties.put("closed", this.closed);
         properties.put("dirty", this.dirty);
+        properties.put("businessPoints", this.businessPoints);
         properties.put("workEstimationVotingActive", this.workEstimationVotingActive);
         properties.put("workEstimationVotingShowoff", this.workEstimationVotingShowoff);
         properties.put("tasksOrderIds", this.tasksOrderIds);

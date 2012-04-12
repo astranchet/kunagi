@@ -62,6 +62,7 @@ public class Requirement extends GRequirement implements ReferenceSupport, Label
 	private transient AFieldModel<String> taskStatusLabelModel;
 	private transient AFieldModel<String> themesAsStringModel;
 	private transient AFieldModel<String> estimatedWorkWithUnitModel;
+	private transient AFieldModel<String> businessPointsWithUnitModel;
 
 	public Requirement(Project project) {
 		setProject(project);
@@ -188,6 +189,10 @@ public class Requirement extends GRequirement implements ReferenceSupport, Label
 
 	public String getEstimatedWorkWithUnit() {
 		return ScrumGwt.getEstimationAsString(getEstimatedWork(), getProject().getEffortUnit());
+	}
+
+	public String getBusinessPointsWithUnit() {
+		return ScrumGwt.getBusinessPointAsString(getBusinessPoints(), getProject().getBusinessPointUnit());
 	}
 
 	public List<RequirementEstimationVote> getEstimationVotes() {
@@ -469,6 +474,17 @@ public class Requirement extends GRequirement implements ReferenceSupport, Label
 			}
 		};
 		return estimatedWorkWithUnitModel;
+	}
+
+	public AFieldModel<String> getBusinessPointsWithUnitModel() {
+		if (businessPointsWithUnitModel == null) businessPointsWithUnitModel = new AFieldModel<String>() {
+
+			@Override
+			public String getValue() {
+				return getBusinessPointsWithUnit();
+			}
+		};
+		return businessPointsWithUnitModel;
 	}
 
 	public AFieldModel<String> getTaskStatusLabelModel() {

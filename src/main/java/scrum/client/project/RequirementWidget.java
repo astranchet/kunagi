@@ -71,7 +71,7 @@ public class RequirementWidget extends AScrumWidget {
 		if (showLabel) {
 			left.addFieldRow("Label", requirement.getLabelModel());
 		}
-
+		left.addFieldRow("Business points", requirement.getBusinessPointsModel());
 		left.addFieldRow("Description", requirement.getDescriptionModel());
 		left.addFieldRow("Themes", new ThemesWidget(requirement));
 
