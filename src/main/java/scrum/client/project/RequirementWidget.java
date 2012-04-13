@@ -43,6 +43,7 @@ public class RequirementWidget extends AScrumWidget {
 	private boolean showSprint;
 	private boolean showTaskWork;
 	private boolean showComments;
+	private boolean showBusinessPoints;
 	private boolean planningPoker;
 	private boolean showChangeHistory;
 	private boolean acceptReject;
@@ -51,9 +52,11 @@ public class RequirementWidget extends AScrumWidget {
 
 	// FIXME remove showComments
 	public RequirementWidget(Requirement requirement, boolean showLabel, boolean showSprint, boolean showTaskWork,
-			boolean showComments, boolean planningPoker, boolean showChangeHistory, boolean acceptReject) {
+			boolean showComments, boolean planningPoker, boolean showChangeHistory, boolean acceptReject,
+			boolean showBusinessPoints) {
 		this.requirement = requirement;
 		this.showLabel = showLabel;
+		this.showBusinessPoints = showBusinessPoints;
 		this.showSprint = showSprint;
 		this.showTaskWork = showTaskWork;
 		this.showComments = showComments;
@@ -71,7 +74,11 @@ public class RequirementWidget extends AScrumWidget {
 		if (showLabel) {
 			left.addFieldRow("Label", requirement.getLabelModel());
 		}
-		left.addFieldRow("Business points", requirement.getBusinessPointsModel());
+
+		if (showBusinessPoints) {
+			left.addFieldRow("Business points", requirement.getBusinessPointsModel());
+		}
+
 		left.addFieldRow("Description", requirement.getDescriptionModel());
 		left.addFieldRow("Themes", new ThemesWidget(requirement));
 

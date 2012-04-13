@@ -44,7 +44,7 @@ public class RequirementBlock extends ABlockWidget<Requirement> implements Trash
 		header.addText(requirement.getLabelModel());
 		header.addText(requirement.getThemesAsStringModel(), true, false);
 		header.addText(requirement.getEstimatedWorkWithUnitModel(), true);
-		header.addText(requirement.getBusinessPointsWithUnitModel(), true, true);
+		header.addText(requirement.getBusinessPointsWithUnitModel(), true);
 
 		header.appendCell(new EmoticonsWidget(requirement), null, true);
 		header.appendCell(new EstimationBarWidget(requirement), "150px", true);
@@ -112,7 +112,7 @@ public class RequirementBlock extends ABlockWidget<Requirement> implements Trash
 
 	@Override
 	protected Widget onExtendedInitialization() {
-		return new RequirementWidget(getObject(), true, false, false, true, true, true, false);
+		return new RequirementWidget(getObject(), true, false, false, true, true, true, false, true);
 	}
 
 	@Override

@@ -62,6 +62,7 @@ public class RequirementInHistoryBlock extends ABlockWidget<Requirement> {
 		header.addIconWrapper().setWidget(statusImage);
 		header.addText(requirement.getHistoryLabelModel(sprint));
 		header.addText(requirement.getThemesAsStringModel(), true, false);
+		header.addText(requirement.getBusinessPointsWithUnitModel(), true);
 		header.addMenuAction(new ActivateChangeHistoryAction(requirement));
 
 		header.setDragHandle(requirement.getReference());
@@ -79,7 +80,7 @@ public class RequirementInHistoryBlock extends ABlockWidget<Requirement> {
 		tasks.addAll(report.getOpenTasks(requirement));
 		tasks.addAll(report.getClosedTasks(requirement));
 
-		requirementWidget = new RequirementWidget(requirement, true, false, false, true, false, false, false);
+		requirementWidget = new RequirementWidget(requirement, true, false, false, true, false, false, false, false);
 
 		taskList = new BlockListWidget<Task>(TaskInHistoryBlock.createFactory(sprint));
 		taskList.setAutoSorter(sprint.getTasksOrderComparator());

@@ -44,6 +44,7 @@ public class RequirementInWhiteboardBlock extends ABlockWidget<Requirement> {
 		header.addText(requirement.getLabelModel());
 		header.addText(requirement.getThemesAsStringModel(), true, false);
 		header.addText(requirement.getTaskStatusLabelModel(), true);
+		header.addText(requirement.getBusinessPointsWithUnitModel(), true);
 		header.appendCell(new EmoticonsWidget(requirement), null, true);
 		header.addMenuAction(new RejectRequirementAction(requirement));
 		header.addMenuAction(new FixRequirementAction(requirement));
@@ -77,7 +78,7 @@ public class RequirementInWhiteboardBlock extends ABlockWidget<Requirement> {
 
 	@Override
 	protected Widget onExtendedInitialization() {
-		return new RequirementWidget(getObject(), true, false, true, true, false, true, true);
+		return new RequirementWidget(getObject(), true, false, true, true, false, true, true, false);
 	}
 
 	public static final BlockWidgetFactory<Requirement> FACTORY = new BlockWidgetFactory<Requirement>() {

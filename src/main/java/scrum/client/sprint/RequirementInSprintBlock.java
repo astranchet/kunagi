@@ -66,6 +66,8 @@ public class RequirementInSprintBlock extends ABlockWidget<Requirement> {
 		header.addText(requirement.getLabelModel());
 		header.addText(requirement.getThemesAsStringModel(), true, false);
 		header.addText(requirement.getTaskStatusLabelModel(), true);
+		header.addText(requirement.getBusinessPointsWithUnitModel(), true);
+
 		header.appendCell(new EmoticonsWidget(requirement), null, true);
 		header.addMenuAction(new RejectRequirementAction(requirement));
 		header.addMenuAction(new FixRequirementAction(requirement));
@@ -106,7 +108,7 @@ public class RequirementInSprintBlock extends ABlockWidget<Requirement> {
 	protected Widget onExtendedInitialization() {
 		Requirement requirement = getObject();
 
-		requirementWidget = new RequirementWidget(requirement, false, false, true, false, false, false, false);
+		requirementWidget = new RequirementWidget(requirement, false, false, true, false, false, false, false, false);
 		taskList = new BlockListWidget<Task>(TaskInRequirementBlock.FACTORY);
 		taskList.setAutoSorter(requirement.getTasksOrderComparator());
 		if (requirement.getProject().isTeamMember(getCurrentUser())) {
